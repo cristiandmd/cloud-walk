@@ -1,12 +1,12 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+
 import 'package:concerts_weather/modules/concerts/domain/fetch_concerts_use_case.dart';
 import 'package:concerts_weather/modules/concerts/domain/repositories/address_model.dart';
 import 'package:concerts_weather/modules/concerts/domain/repositories/concert_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-
 @GenerateNiceMocks([MockSpec<ConcertsRepository>()])
 import 'package:concerts_weather/modules/concerts/domain/repositories/concerts_repository.dart';
-import 'package:mockito/mockito.dart';
 import 'fetch_concerts_use_case_test.mocks.dart';
 
 void main() {
