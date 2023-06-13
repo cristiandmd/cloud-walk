@@ -77,7 +77,7 @@ Make sure you have the following prerequisites installed on your system:
 
 At the terminal, navigate to the project root folder and run:
 ```shell
-flutter pub get
+flutter pub get && flutter pub run build_runner build
 ```
 > **Note**
 > : this command will install all Flutter dependencies.
