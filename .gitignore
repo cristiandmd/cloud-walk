@@ -10,7 +10,6 @@
 build/
 coverage/
 lib/generated_plugin_registrant.dart
-lib/generated/**
 
 # Android related
 **/android/**/gradle-wrapper.jar
