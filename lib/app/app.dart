@@ -15,7 +15,7 @@ class App extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: const Text('Hello World'),
+      home: const Scaffold(body: Center(child: Text('Hello World'))),
     );
   }
 }
