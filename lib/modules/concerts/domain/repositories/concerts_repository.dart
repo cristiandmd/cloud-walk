@@ -1,5 +1,5 @@
-import 'concert.dart';
+import 'concert_model.dart';
 
 abstract class ConcertsRepository {
-  Future<Iterable<Concert>> fetchConcerts();
+  Future<Iterable<ConcertModel>> fetchConcerts();
 }
