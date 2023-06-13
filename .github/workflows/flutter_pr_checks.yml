@@ -1,0 +1,27 @@
+name: Dart
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2.10.0
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Analyze project source
+        run: dart analyze
+
+      - name: Run tests
+        run: flutter test test
+
+      - name: Build project
+        run: flutter build apk
