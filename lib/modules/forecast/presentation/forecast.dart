@@ -1,3 +1,4 @@
+import 'package:concerts_weather/app/design_tokens.dart';
 import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_model.dart';
 import 'package:concerts_weather/modules/forecast/presentation/forecast_events.dart';
@@ -37,7 +38,7 @@ class _ForecastState extends State<Forecast> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(DesignTokens.large),
       child: BlocBuilder<ForecastBloc, ForecastState>(
         builder: (context, state) {
           return switch (state) {
@@ -47,7 +48,7 @@ class _ForecastState extends State<Forecast> {
             CouldNotLoadForecastState() => Column(
                 children: [
                   const Icon(Icons.error),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: DesignTokens.small),
                   Text(S.current.ForecastCouldNotLoad),
                 ],
               ),
@@ -69,7 +70,7 @@ class _LoadedState extends StatelessWidget {
       children: [
         Card(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(DesignTokens.large),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -77,7 +78,7 @@ class _LoadedState extends StatelessWidget {
                   S.current.ForecastTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: DesignTokens.large),
               ],
             ),
           ),

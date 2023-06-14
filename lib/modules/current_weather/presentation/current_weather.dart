@@ -1,3 +1,4 @@
+import 'package:concerts_weather/app/design_tokens.dart';
 import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/current_weather/domain/repositories/weather_model.dart';
 import 'package:concerts_weather/modules/current_weather/presentation/current_weather_events.dart';
@@ -31,7 +32,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(DesignTokens.large),
       child: BlocBuilder<CurrentWeatherBloc, CurrentWeatherState>(
         builder: (context, state) {
           return Center(
@@ -42,7 +43,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
               ColdNotLoadCurrentWeatherState() => Column(
                   children: [
                     const Icon(Icons.error),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: DesignTokens.small),
                     Text(S.current.CurrentWeatherCouldNotLoad),
                   ],
                 ),
@@ -65,7 +66,7 @@ class _LoadedState extends StatelessWidget {
       children: [
         Card(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(DesignTokens.large),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -73,14 +74,14 @@ class _LoadedState extends StatelessWidget {
                   S.current.CurrentWeatherTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: DesignTokens.large),
                 Row(
                   children: [
                     Text(
                       '80',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: DesignTokens.xSmall),
                     Text(S.current.CurrentWeatherDegrees),
                   ],
                 ),

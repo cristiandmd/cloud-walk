@@ -1,3 +1,4 @@
+import 'package:concerts_weather/app/design_tokens.dart';
 import 'package:concerts_weather/app/routes/app_route.dart';
 import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/concerts/presentation/concerts_events.dart';
@@ -28,7 +29,7 @@ class _ConcertsPageState extends State<ConcertsPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(DesignTokens.large),
         child: BlocBuilder<ConcertsBloc, ConcertsState>(
           builder: (context, state) {
             return switch (state) {
@@ -38,7 +39,7 @@ class _ConcertsPageState extends State<ConcertsPage> {
               ColdNotLoadConcertsState() => Column(
                   children: [
                     const Icon(Icons.error),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: DesignTokens.small),
                     Text(S.current.ConcertsCouldNotLoad),
                   ],
                 ),
@@ -72,7 +73,7 @@ class _LoadedState extends StatelessWidget {
         );
       },
       separatorBuilder: (BuildContext context, int index) => Container(
-        height: 1,
+        height: DesignTokens.hairline,
         color: Colors.grey,
       ),
     );
