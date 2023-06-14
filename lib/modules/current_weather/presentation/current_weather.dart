@@ -33,12 +33,14 @@ class _CurrentWeatherState extends State<CurrentWeather> {
       padding: const EdgeInsets.all(24),
       child: BlocBuilder<CurrentWeatherBloc, CurrentWeatherState>(
         builder: (context, state) {
-          return switch (state) {
-            InitialCurrentWeatherState() => const SizedBox.shrink(),
-            LoadingCurrentWeatherState() => const CircularProgressIndicator(),
-            LoadedCurrentWeatherState() => _LoadedState(data: state.data),
-            ColdNotLoadCurrentWeatherState() => const Text('Error'),
-          };
+          return Center(
+            child: switch (state) {
+              InitialCurrentWeatherState() => const SizedBox.shrink(),
+              LoadingCurrentWeatherState() => const CircularProgressIndicator(),
+              LoadedCurrentWeatherState() => _LoadedState(data: state.data),
+              ColdNotLoadCurrentWeatherState() => const Text('Error'),
+            },
+          );
         },
       ),
     );
