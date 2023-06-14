@@ -1,3 +1,4 @@
+import 'package:concerts_weather/app/routes/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../generated/l10n.dart';
@@ -15,9 +16,10 @@ class App extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      onGenerateRoute: buildRoutes(appRoutes),
+      initialRoute: AppRoutesNames.concerts.name,
+      onGenerateRoute: buildRoutes(appRoutes()),
       supportedLocales: S.delegate.supportedLocales,
-      home: const Scaffold(body: Center(child: Text('Hello World'))),
+      home: Container(),
     );
   }
 }
