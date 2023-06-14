@@ -11,10 +11,11 @@ final class CachedWeatherRepository implements WeatherRepository {
   final CacheHandler _cacheHandler;
 
   @override
-  Future<WeatherModel> fetchWeather({required double lat, required double long}) async {
+  Future<WeatherModel> fetchWeather({required double latitude, required double longitude}) async {
     return _cacheHandler.fetch(
-      onFetch: () => _decorated.fetchWeather(lat: lat, long: long),
-      storeKey: 'weather',
+      onFetch: () => _decorated.fetchWeather(latitude: latitude, longitude: longitude),
+      map: WeatherModel.fromJson,
+      storeKey: 'weather-$latitude-$longitude',
     );
   }
 }

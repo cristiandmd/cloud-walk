@@ -9,11 +9,14 @@ final class FetchForecastUseCase {
   final ForecastRepository _forecastFiveDaysRepository;
 
   Future<ForecastModel> call({
-    required double lat,
-    required double long,
+    required double latitude,
+    required double longitude,
     required ForecastRange range,
   }) =>
       switch (range) {
-        ForecastRange.nextFiveDays => _forecastFiveDaysRepository.fetchForecast(lat: lat, long: long),
+        ForecastRange.nextFiveDays => _forecastFiveDaysRepository.fetchForecast(
+            latitude: latitude,
+            longitude: longitude,
+          ),
       };
 }

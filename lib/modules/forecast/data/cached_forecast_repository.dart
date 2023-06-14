@@ -11,10 +11,14 @@ final class CachedForecastRepository implements ForecastRepository {
   final CacheHandler _cacheHandler;
 
   @override
-  Future<ForecastModel> fetchForecast({required double lat, required double long}) {
+  Future<ForecastModel> fetchForecast({
+    required double latitude,
+    required double longitude,
+  }) {
     return _cacheHandler.fetch(
-      onFetch: () => _decorated.fetchForecast(lat: lat, long: long),
-      storeKey: 'forecast',
+      onFetch: () => _decorated.fetchForecast(latitude: latitude, longitude: longitude),
+      map: ForecastModel.fromJson,
+      storeKey: 'forecast-$latitude-$longitude',
     );
   }
 }

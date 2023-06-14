@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class WeatherModel extends Equatable {
-  const WeatherModel.fromJson(Map<String, dynamic> json);
+  factory WeatherModel.fromJson(Map<String, dynamic> json) => const WeatherModel();
   Map<String, dynamic> toJson() => {};
   const WeatherModel();
 

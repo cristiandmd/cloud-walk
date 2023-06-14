@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:concerts_weather/api_keys.dart';
 import 'package:concerts_weather/modules/forecast/data/api_forecast_repository.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_model.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_repositories.dart';
@@ -12,17 +13,18 @@ import 'api_forecast_repository_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<Client>()])
 void main() {
-  const lat = 20.0;
-  const long = 20.0;
+  const latitude = 20.0;
+  const longitude = 20.0;
+  const url = 'https://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&appid=$openWeatherApiKey';
   group('#fetchForecast', () {
     test('when the status is 200 then returns the data', () async {
       final clientMock = MockClient();
       const model = ForecastModel();
-      when(clientMock.get(any)).thenAnswer((_) async => Response(jsonEncode(model), 200));
+      when(clientMock.get(Uri.parse(url))).thenAnswer((_) async => Response(jsonEncode(model), 200));
       final sut = makeSUT(clientMock);
 
       expect(
-        sut.fetchForecast(lat: lat, long: long),
+        sut.fetchForecast(latitude: latitude, longitude: longitude),
         completion(model),
       );
     });
@@ -32,7 +34,7 @@ void main() {
       final sut = makeSUT(clientMock);
 
       expect(
-        sut.fetchForecast(lat: lat, long: long),
+        sut.fetchForecast(latitude: latitude, longitude: longitude),
         throwsA(isA<CouldNotFetchForecast>()),
       );
     });

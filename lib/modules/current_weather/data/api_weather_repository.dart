@@ -11,16 +11,16 @@ final class APIWeatherRepository implements WeatherRepository {
   final Client _client;
 
   @override
-  Future<WeatherModel> fetchWeather({required double lat, required double long}) async {
-    final url = 'https://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$long}&appid={$openWeatherApiKey}';
+  Future<WeatherModel> fetchWeather({required double latitude, required double longitude}) async {
+    final url = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$openWeatherApiKey';
     final response = await _client.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body) as Map<String, dynamic>;
       return WeatherModel.fromJson(json);
     } else {
-      throw CouldNotFetchWeather();
+      throw CouldNotFetchWeatherError();
     }
   }
 }
 
-class CouldNotFetchWeather extends Error {}
+class CouldNotFetchWeatherError extends Error {}

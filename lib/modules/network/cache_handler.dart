@@ -7,12 +7,13 @@ import 'connectivity_detector.dart';
 abstract class CacheHandler {
   Future<T> fetch<T>({
     required Future<T> Function() onFetch,
+    required T Function(Map<String, dynamic>) map,
     required String storeKey,
   });
 }
 
-class BaseCacheHandler implements CacheHandler {
-  const BaseCacheHandler({
+class SharedPreferencesCacheHandler implements CacheHandler {
+  const SharedPreferencesCacheHandler({
     required ConnectivityDetector connectivityDetector,
     required Future<SharedPreferences> Function() sharedPreferences,
   })  : _connectivityDetector = connectivityDetector,
@@ -23,6 +24,7 @@ class BaseCacheHandler implements CacheHandler {
   @override
   Future<T> fetch<T>({
     required Future<T> Function() onFetch,
+    required T Function(Map<String, dynamic>) map,
     required String storeKey,
   }) async {
     final isOnline = await _connectivityDetector.isOnline();
@@ -33,9 +35,9 @@ class BaseCacheHandler implements CacheHandler {
     try {
       final preferences = await _sharedPreferences();
       if (data != null) {
-        await preferences.setString(storeKey, json.encode(data));
+        await preferences.setString(storeKey, jsonEncode(data));
       } else {
-        data = preferences.getString(storeKey).map((value) => json.decode(value));
+        data = map(preferences.getString(storeKey).map(jsonDecode));
       }
     } catch (error) {
       if (data != null) {
