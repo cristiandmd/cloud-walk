@@ -1,3 +1,4 @@
+import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/current_weather/domain/repositories/weather_model.dart';
 import 'package:concerts_weather/modules/current_weather/presentation/current_weather_events.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,13 @@ class _CurrentWeatherState extends State<CurrentWeather> {
               InitialCurrentWeatherState() => const SizedBox.shrink(),
               LoadingCurrentWeatherState() => const CircularProgressIndicator(),
               LoadedCurrentWeatherState() => _LoadedState(data: state.data),
-              ColdNotLoadCurrentWeatherState() => const Text('Error'),
+              ColdNotLoadCurrentWeatherState() => Column(
+                  children: [
+                    const Icon(Icons.error),
+                    const SizedBox(height: 8),
+                    Text(S.current.CurrentWeatherCouldNotLoad),
+                  ],
+                ),
             },
           );
         },
@@ -63,7 +70,7 @@ class _LoadedState extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Temperatura hoje:',
+                  S.current.CurrentWeatherTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 24),
@@ -74,7 +81,7 @@ class _LoadedState extends StatelessWidget {
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     const SizedBox(width: 4),
-                    const Text('graus'),
+                    Text(S.current.CurrentWeatherDegrees),
                   ],
                 ),
               ],

@@ -59,6 +59,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Erro ao carregar a previsão do tempo`
+  String get ForecastCouldNotLoad {
+    return Intl.message(
+      'Erro ao carregar a previsão do tempo',
+      name: 'ForecastCouldNotLoad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proximos dias`
+  String get ForecastTitle {
+    return Intl.message(
+      'Proximos dias',
+      name: 'ForecastTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro ao carregar a temperatura`
+  String get CurrentWeatherCouldNotLoad {
+    return Intl.message(
+      'Erro ao carregar a temperatura',
+      name: 'CurrentWeatherCouldNotLoad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Temperatura Hoje`
+  String get CurrentWeatherTitle {
+    return Intl.message(
+      'Temperatura Hoje',
+      name: 'CurrentWeatherTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Graus`
+  String get CurrentWeatherDegrees {
+    return Intl.message(
+      'Graus',
+      name: 'CurrentWeatherDegrees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Erro ao carregar os concertos`
+  String get ConcertsCouldNotLoad {
+    return Intl.message(
+      'Erro ao carregar os concertos',
+      name: 'ConcertsCouldNotLoad',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

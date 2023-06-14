@@ -1,3 +1,4 @@
+import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_model.dart';
 import 'package:concerts_weather/modules/forecast/presentation/forecast_events.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,13 @@ class _ForecastState extends State<Forecast> {
             InitialForecastState() => const SizedBox.shrink(),
             LoadingForecastState() => const CircularProgressIndicator(),
             LoadedForecastState() => _LoadedState(data: state.data),
-            CouldNotLoadForecastState() => const Text('Error'),
+            CouldNotLoadForecastState() => Column(
+                children: [
+                  const Icon(Icons.error),
+                  const SizedBox(height: 8),
+                  Text(S.current.ForecastCouldNotLoad),
+                ],
+              ),
           };
         },
       ),
@@ -67,7 +74,7 @@ class _LoadedState extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Proximos dias:',
+                  S.current.ForecastTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 24),

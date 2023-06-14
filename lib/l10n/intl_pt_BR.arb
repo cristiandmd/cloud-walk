@@ -1,3 +1,9 @@
 {
-    "RouteNotFound": "Rota não encontrada"
+    "RouteNotFound": "Rota não encontrada",
+    "ForecastCouldNotLoad": "Erro ao carregar a previsão do tempo",
+    "ForecastTitle": "Proximos dias",
+    "CurrentWeatherCouldNotLoad": "Erro ao carregar a temperatura",
+    "CurrentWeatherTitle": "Temperatura Hoje",
+    "CurrentWeatherDegrees": "Graus",
+    "ConcertsCouldNotLoad": "Erro ao carregar os concertos"
 }

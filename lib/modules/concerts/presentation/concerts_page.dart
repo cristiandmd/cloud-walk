@@ -1,4 +1,5 @@
 import 'package:concerts_weather/app/routes/app_route.dart';
+import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/concerts/presentation/concerts_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,13 @@ class _ConcertsPageState extends State<ConcertsPage> {
               InitialConcertsState() => const SizedBox.shrink(),
               LoadingConcertsState() => const CircularProgressIndicator(),
               LoadedConcertsState() => _LoadedState(data: state.data),
-              ColdNotLoadConcertsState() => const Text('Error'),
+              ColdNotLoadConcertsState() => Column(
+                  children: [
+                    const Icon(Icons.error),
+                    const SizedBox(height: 8),
+                    Text(S.current.ConcertsCouldNotLoad),
+                  ],
+                ),
             };
           },
         ),

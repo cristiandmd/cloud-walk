@@ -22,6 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "ConcertsCouldNotLoad": MessageLookupByLibrary.simpleMessage(
+            "Erro ao carregar os concertos"),
+        "CurrentWeatherCouldNotLoad": MessageLookupByLibrary.simpleMessage(
+            "Erro ao carregar a temperatura"),
+        "CurrentWeatherDegrees": MessageLookupByLibrary.simpleMessage("Graus"),
+        "CurrentWeatherTitle":
+            MessageLookupByLibrary.simpleMessage("Temperatura Hoje"),
+        "ForecastCouldNotLoad": MessageLookupByLibrary.simpleMessage(
+            "Erro ao carregar a previsão do tempo"),
+        "ForecastTitle": MessageLookupByLibrary.simpleMessage("Proximos dias"),
         "RouteNotFound":
             MessageLookupByLibrary.simpleMessage("Rota não encontrada")
       };
