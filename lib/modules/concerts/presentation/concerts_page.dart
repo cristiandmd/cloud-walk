@@ -2,6 +2,7 @@ import 'package:concerts_weather/app/design_tokens.dart';
 import 'package:concerts_weather/app/routes/app_route.dart';
 import 'package:concerts_weather/generated/l10n.dart';
 import 'package:concerts_weather/modules/concerts/presentation/concerts_events.dart';
+import 'package:diacritic/diacritic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,6 +19,7 @@ class ConcertsPage extends StatefulWidget {
 }
 
 class _ConcertsPageState extends State<ConcertsPage> {
+  String _searchedText = '';
   @override
   void initState() {
     super.initState();
@@ -27,7 +29,21 @@ class _ConcertsPageState extends State<ConcertsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: TextField(
+          onChanged: (value) {
+            setState(() {
+              _searchedText = value;
+            });
+          },
+          decoration: InputDecoration(
+            hintText: S.current.ConcertsSearchHint,
+            prefixIcon: const Icon(Icons.search),
+            icon: const Icon(Icons.search),
+            iconColor: Colors.white,
+          ),
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.all(DesignTokens.large),
         child: BlocBuilder<ConcertsBloc, ConcertsState>(
@@ -35,7 +51,10 @@ class _ConcertsPageState extends State<ConcertsPage> {
             return switch (state) {
               InitialConcertsState() => const SizedBox.shrink(),
               LoadingConcertsState() => const CircularProgressIndicator(),
-              LoadedConcertsState() => _LoadedState(data: state.data),
+              LoadedConcertsState() => _LoadedState(
+                  data: state.data,
+                  searchedTerms: _searchedText,
+                ),
               ColdNotLoadConcertsState() => Column(
                   children: [
                     const Icon(Icons.error),
@@ -52,15 +71,20 @@ class _ConcertsPageState extends State<ConcertsPage> {
 }
 
 class _LoadedState extends StatelessWidget {
-  const _LoadedState({required this.data});
+  const _LoadedState({required this.data, required this.searchedTerms});
   final Iterable<ConcertModel> data;
+  final String searchedTerms;
 
   @override
   Widget build(BuildContext context) {
+    final filtered = data.where((element) => element.address.city.normalized().contains(searchedTerms.normalized()));
+    if (filtered.isEmpty) {
+      return Center(child: Text(S.current.ConcertNotFound));
+    }
     return ListView.separated(
-      itemCount: data.length,
+      itemCount: filtered.length,
       itemBuilder: (_, index) {
-        final item = data.elementAt(index);
+        final item = filtered.elementAt(index);
         return ListTile(
           title: Text(item.address.city),
           subtitle: Text(item.address.country),
@@ -78,4 +102,8 @@ class _LoadedState extends StatelessWidget {
       ),
     );
   }
+}
+
+extension _Normalize on String {
+  String normalized() => removeDiacritics(toLowerCase().trim());
 }

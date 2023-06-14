@@ -22,8 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "ConcertNotFound": MessageLookupByLibrary.simpleMessage(
+            "Não foi encontrado nenhuma cidade com esse nome"),
         "ConcertsCouldNotLoad": MessageLookupByLibrary.simpleMessage(
             "Erro ao carregar os concertos"),
+        "ConcertsSearchHint":
+            MessageLookupByLibrary.simpleMessage("Digite o nome da cidade"),
         "CurrentWeatherCouldNotLoad": MessageLookupByLibrary.simpleMessage(
             "Erro ao carregar a temperatura"),
         "CurrentWeatherDegrees": MessageLookupByLibrary.simpleMessage("Graus"),

@@ -5,5 +5,8 @@
     "CurrentWeatherCouldNotLoad": "Erro ao carregar a temperatura",
     "CurrentWeatherTitle": "Temperatura Hoje",
     "CurrentWeatherDegrees": "Graus",
-    "ConcertsCouldNotLoad": "Erro ao carregar os concertos"
+    "ConcertsCouldNotLoad": "Erro ao carregar os concertos",
+    "ConcertNotFound": "Não foi encontrado nenhuma cidade com esse nome",
+    "ConcertsSearchHint": "Digite o nome da cidade"
+
 }

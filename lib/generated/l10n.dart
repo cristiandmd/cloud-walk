@@ -119,6 +119,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Não foi encontrado nenhuma cidade com esse nome`
+  String get ConcertNotFound {
+    return Intl.message(
+      'Não foi encontrado nenhuma cidade com esse nome',
+      name: 'ConcertNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digite o nome da cidade`
+  String get ConcertsSearchHint {
+    return Intl.message(
+      'Digite o nome da cidade',
+      name: 'ConcertsSearchHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
