@@ -19,8 +19,15 @@ void main() {
   group('#fetchWeather', () {
     test('when the status is 200 then returns the data', () async {
       final clientMock = MockClient();
-      const model = WeatherModel();
-      when(clientMock.get(Uri.parse(url))).thenAnswer((_) async => Response(jsonEncode(model), 200));
+      const model = WeatherModel(description: 'foo', main: 'bar');
+      when(clientMock.get(Uri.parse(url))).thenAnswer(
+        (_) async => Response(
+          jsonEncode({
+            'weather': [model]
+          }),
+          200,
+        ),
+      );
       final sut = makeSUT(clientMock);
 
       expect(

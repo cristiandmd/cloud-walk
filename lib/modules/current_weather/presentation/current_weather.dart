@@ -75,15 +75,13 @@ class _LoadedState extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: DesignTokens.large),
-                Row(
-                  children: [
-                    Text(
-                      '80',
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                    const SizedBox(width: DesignTokens.xSmall),
-                    Text(S.current.CurrentWeatherDegrees),
-                  ],
+                Text(
+                  data.main,
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+                Text(
+                  data.description,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
             ),

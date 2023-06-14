@@ -100,16 +100,6 @@ class S {
     );
   }
 
-  /// `Graus`
-  String get CurrentWeatherDegrees {
-    return Intl.message(
-      'Graus',
-      name: 'CurrentWeatherDegrees',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Erro ao carregar os concertos`
   String get ConcertsCouldNotLoad {
     return Intl.message(

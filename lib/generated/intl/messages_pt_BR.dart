@@ -30,7 +30,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Digite o nome da cidade"),
         "CurrentWeatherCouldNotLoad": MessageLookupByLibrary.simpleMessage(
             "Erro ao carregar a temperatura"),
-        "CurrentWeatherDegrees": MessageLookupByLibrary.simpleMessage("Graus"),
         "CurrentWeatherTitle":
             MessageLookupByLibrary.simpleMessage("Temperatura Hoje"),
         "ForecastCouldNotLoad": MessageLookupByLibrary.simpleMessage(

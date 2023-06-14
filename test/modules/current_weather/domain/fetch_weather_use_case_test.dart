@@ -15,7 +15,7 @@ void main() {
   group('#fetchWeather', () {
     test('when succeed then returns properly', () async {
       final repositoryMock = MockWeatherRepository();
-      const weather = WeatherModel();
+      const weather = WeatherModel(description: 'foo', main: 'bar');
       when(repositoryMock.fetchWeather(latitude: latitude, longitude: longitude)).thenAnswer((_) async => weather);
       final fetchWeather = makeSUT(repositoryMock);
 

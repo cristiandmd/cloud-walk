@@ -13,7 +13,7 @@ import 'cached_weather_repository_test.mocks.dart';
 void main() {
   const latitude = 200.0;
   const longitude = 400.0;
-  const model = WeatherModel();
+  const model = WeatherModel(description: 'foo', main: 'bar');
   const storageKey = 'weather-$latitude-$longitude';
 
   group('#fetchForecast', () {
