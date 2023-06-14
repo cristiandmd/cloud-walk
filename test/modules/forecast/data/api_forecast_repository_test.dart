@@ -15,7 +15,7 @@ import 'api_forecast_repository_test.mocks.dart';
 void main() {
   const latitude = 20.0;
   const longitude = 20.0;
-  final url = 'https://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&appid=$openWeatherApiKey';
+  const url = 'https://api.openweathermap.org/data/2.5/forecast?lat=$latitude&lon=$longitude&appid=$openWeatherApiKey';
   group('#fetchForecast', () {
     test('when the status is 200 then returns the data', () async {
       final clientMock = MockClient();
