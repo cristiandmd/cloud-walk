@@ -85,7 +85,7 @@ CacheHandler makeSUT(
   ConnectivityDetector connectivityDetector,
   Future<SharedPreferences> Function() sharedPreferences,
 ) {
-  return CacheHandler(
+  return BaseCacheHandler(
     connectivityDetector: connectivityDetector,
     sharedPreferences: () async => sharedPreferences(),
   );

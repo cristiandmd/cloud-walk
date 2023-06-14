@@ -4,8 +4,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'connectivity_detector.dart';
 
-final class CacheHandler {
-  const CacheHandler({
+abstract class CacheHandler {
+  Future<T> fetch<T>({
+    required Future<T> Function() onFetch,
+    required String storeKey,
+  });
+}
+
+class BaseCacheHandler implements CacheHandler {
+  const BaseCacheHandler({
     required ConnectivityDetector connectivityDetector,
     required Future<SharedPreferences> Function() sharedPreferences,
   })  : _connectivityDetector = connectivityDetector,
@@ -13,6 +20,7 @@ final class CacheHandler {
   final ConnectivityDetector _connectivityDetector;
   final Future<SharedPreferences> Function() _sharedPreferences;
 
+  @override
   Future<T> fetch<T>({
     required Future<T> Function() onFetch,
     required String storeKey,
