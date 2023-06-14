@@ -97,5 +97,4 @@ flutter run
 # Other documents
 [**Forecast architecture design decision**](https://github.com/cristiandmd/cloud-walk/wiki/Forecast-Architecture-design)
 
-
-
+[**Offline architecture design decision**](https://github.com/cristiandmd/cloud-walk/wiki/Offline-architecture-design)
