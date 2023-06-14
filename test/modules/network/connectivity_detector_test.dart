@@ -75,5 +75,5 @@ void main() {
 }
 
 ConnectivityDetector makeSUT(Connectivity connectivity) {
-  return ConnectivityDetector(connectivity);
+  return BaseConnectivityDetector(connectivity);
 }

@@ -1,9 +1,14 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-final class ConnectivityDetector {
-  ConnectivityDetector(this._connectivity);
+abstract class ConnectivityDetector {
+  Future<bool> isOnline();
+}
+
+final class BaseConnectivityDetector implements ConnectivityDetector {
+  BaseConnectivityDetector(this._connectivity);
   final Connectivity _connectivity;
 
+  @override
   Future<bool> isOnline() async {
     try {
       return await _connectivity
