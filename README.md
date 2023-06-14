@@ -73,6 +73,18 @@ Make sure you have the following prerequisites installed on your system:
 - [Flutter SDK (>=3.0.3 <4.0.0)](https://www.google.com/search?q=install+flutter&oq=install+flutter&aqs=chrome..69i57j35i39j35i39i650j0i131i433i512l4j0i433i512j0i131i433i512j0i433i512.3069j0j7&sourceid=chrome&ie=UTF-8)
 - Android Emulator or iOS Simulator (optional, but required if you want to run the app on a virtual device)
 
+<br />
+
+## Weather retrieval
+
+You must have an Open Weather API Key to run the project.
+> **Note**
+> : You can generate your api key [here](https://home.openweathermap.org/api_keys).
+
+Open [this file](https://github.com/cristiandmd/cloud-walk/blob/main/lib/api_keys.dart) and update the API key with your key.
+
+
+
 ## Almost there
 
 At the terminal, navigate to the project root folder and run:

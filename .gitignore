@@ -60,3 +60,4 @@ test/**/**.mocks.dart
 
 # VSCode
 .vscode/*
+lib/api_keys.dart
