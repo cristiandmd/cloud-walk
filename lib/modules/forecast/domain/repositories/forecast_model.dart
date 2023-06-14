@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class ForecastModel extends Equatable {
   const ForecastModel();
-  const ForecastModel.fromJson(Map<String, dynamic> json);
+  factory ForecastModel.fromJson(Map<String, dynamic> json) => const ForecastModel();
   Map<String, dynamic> toJson() => {};
 
   @override

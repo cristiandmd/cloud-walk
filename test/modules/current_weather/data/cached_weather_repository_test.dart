@@ -11,20 +11,22 @@ import 'package:concerts_weather/modules/network/cache_handler.dart';
 import 'cached_weather_repository_test.mocks.dart';
 
 void main() {
-  const lat = 200.0;
-  const long = 400.0;
+  const latitude = 200.0;
+  const longitude = 400.0;
   const model = WeatherModel();
-  const storageKey = 'weather';
+  const storageKey = 'weather-$latitude-$longitude';
 
   group('#fetchForecast', () {
     test('when cache handler throws error then rethrows', () async {
       final repositoryMock = MockWeatherRepository();
-      when(repositoryMock.fetchWeather(lat: lat, long: long)).thenAnswer((_) => Future.error(Exception()));
+      when(repositoryMock.fetchWeather(latitude: latitude, longitude: longitude))
+          .thenAnswer((_) => Future.error(Exception()));
       final cacheHandler = MockCacheHandler();
       when(
         cacheHandler.fetch(
           onFetch: anyNamed('onFetch'),
           storeKey: storageKey,
+          map: WeatherModel.fromJson,
         ),
       ).thenAnswer((invocation) {
         expect(
@@ -35,25 +37,28 @@ void main() {
       });
       final sut = makeSUT(repositoryMock, cacheHandler);
 
-      expect(sut.fetchWeather(lat: lat, long: long), throwsException);
-      verify(repositoryMock.fetchWeather(lat: lat, long: long)).called(1);
+      expect(sut.fetchWeather(latitude: latitude, longitude: longitude), throwsException);
+      verify(repositoryMock.fetchWeather(latitude: latitude, longitude: longitude)).called(1);
     });
 
     test('when cache handler succeed then returns data', () async {
       final repositoryMock = MockWeatherRepository();
-      when(repositoryMock.fetchWeather(lat: lat, long: long)).thenAnswer((_) async => model);
+      when(repositoryMock.fetchWeather(latitude: latitude, longitude: longitude)).thenAnswer((_) async => model);
       final cacheHandler = MockCacheHandler();
-      when(cacheHandler.fetch(
-        onFetch: anyNamed('onFetch'),
-        storeKey: storageKey,
-      )).thenAnswer((invocation) async {
+      when(
+        cacheHandler.fetch(
+          onFetch: anyNamed('onFetch'),
+          storeKey: storageKey,
+          map: WeatherModel.fromJson,
+        ),
+      ).thenAnswer((invocation) async {
         invocation.callFetch();
         return model;
       });
       final sut = makeSUT(repositoryMock, cacheHandler);
 
-      expect(sut.fetchWeather(lat: lat, long: long), completion(model));
-      verify(repositoryMock.fetchWeather(lat: lat, long: long)).called(1);
+      expect(sut.fetchWeather(latitude: latitude, longitude: longitude), completion(model));
+      verify(repositoryMock.fetchWeather(latitude: latitude, longitude: longitude)).called(1);
     });
   });
 }

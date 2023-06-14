@@ -17,7 +17,13 @@ void main() {
       when(connectivityDetector.isOnline()).thenAnswer((_) => Future.error(Exception()));
       final sut = makeSUT(connectivityDetector, () async => sharedPreferences);
 
-      expect(sut.fetch(onFetch: () async => true, storeKey: 'foo'), throwsException);
+      expect(
+          sut.fetch(
+            onFetch: () async => true,
+            storeKey: 'foo',
+            map: (value) => value,
+          ),
+          throwsException);
     });
 
     test('when is online and fetch fails then returns fetch error', () {
@@ -26,7 +32,14 @@ void main() {
       final sharedPreferences = MockSharedPreferences();
       final sut = makeSUT(connectivityDetector, () async => sharedPreferences);
 
-      expect(sut.fetch(onFetch: () => Future.error(Exception()), storeKey: 'foo'), throwsException);
+      expect(
+        sut.fetch(
+          onFetch: () => Future.error(Exception()),
+          storeKey: 'foo',
+          map: (value) => value,
+        ),
+        throwsException,
+      );
     });
 
     test('when is not online and fails to start the storage then throws CacheMissError', () {
@@ -35,7 +48,11 @@ void main() {
       final sut = makeSUT(connectivityDetector, () => Future.error(Exception()));
 
       expect(
-        sut.fetch(onFetch: () async => true, storeKey: 'foo'),
+        sut.fetch(
+          onFetch: () async => true,
+          storeKey: 'foo',
+          map: (value) => value,
+        ),
         throwsA(isA<CacheMissError>()),
       );
     });
@@ -48,7 +65,11 @@ void main() {
       final sut = makeSUT(connectivityDetector, () async => sharedPreferences);
 
       expect(
-        sut.fetch(onFetch: () async => true, storeKey: 'foo'),
+        sut.fetch(
+          onFetch: () async => true,
+          storeKey: 'foo',
+          map: (value) => value,
+        ),
         throwsA(isA<CacheMissError>()),
       );
     });
@@ -61,7 +82,11 @@ void main() {
       final sut = makeSUT(connectivityDetector, () async => sharedPreferences);
 
       expect(
-        sut.fetch(onFetch: () async => true, storeKey: 'foo'),
+        sut.fetch(
+          onFetch: () async => true,
+          storeKey: 'foo',
+          map: (value) => expect(value, true),
+        ),
         completion(true),
       );
     });
@@ -74,7 +99,11 @@ void main() {
       final sut = makeSUT(connectivityDetector, () async => sharedPreferences);
 
       expect(
-        sut.fetch(onFetch: () async => true, storeKey: 'foo'),
+        sut.fetch(
+          onFetch: () async => true,
+          storeKey: 'foo',
+          map: (value) => expect(value, true),
+        ),
         completion(true),
       );
     });
@@ -85,7 +114,7 @@ CacheHandler makeSUT(
   ConnectivityDetector connectivityDetector,
   Future<SharedPreferences> Function() sharedPreferences,
 ) {
-  return BaseCacheHandler(
+  return SharedPreferencesCacheHandler(
     connectivityDetector: connectivityDetector,
     sharedPreferences: () async => sharedPreferences(),
   );

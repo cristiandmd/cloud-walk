@@ -8,8 +8,12 @@ final class FetchWeatherUseCase {
   }) : _repository = repository;
   final WeatherRepository _repository;
 
-  Future<WeatherModel> call({required double lat, required double long}) => _repository.fetchWeather(
-        lat: lat,
-        long: long,
+  Future<WeatherModel> call({
+    required double latitude,
+    required double longitude,
+  }) =>
+      _repository.fetchWeather(
+        latitude: latitude,
+        longitude: longitude,
       );
 }
