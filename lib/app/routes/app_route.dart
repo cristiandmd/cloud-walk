@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
 
-enum AppRoutesNames { concerts, notFound }
+enum AppRoutesNames { concerts, concertsDetail, notFound }
 
 abstract class AppRoute {
   AppRoutesNames get type;
