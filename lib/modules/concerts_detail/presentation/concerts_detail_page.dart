@@ -19,11 +19,13 @@ class ConcertsDetailPage extends StatelessWidget {
       appBar: AppBar(title: Text('${concert.address.city}, ${concert.address.country}')),
       body: Padding(
         padding: const EdgeInsets.all(DesignTokens.regular),
-        child: Column(
-          children: [
-            currentWeather(context),
-            forecast(context),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              currentWeather(context),
+              forecast(context),
+            ],
+          ),
         ),
       ),
     );

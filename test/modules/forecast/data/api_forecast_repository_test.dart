@@ -19,7 +19,7 @@ void main() {
   group('#fetchForecast', () {
     test('when the status is 200 then returns the data', () async {
       final clientMock = MockClient();
-      const model = ForecastModel();
+      const model = ForecastModel([]);
       when(clientMock.get(Uri.parse(url))).thenAnswer((_) async => Response(jsonEncode(model), 200));
       final sut = makeSUT(clientMock);
 

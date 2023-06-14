@@ -14,7 +14,7 @@ import 'cached_forecast_repository_test.mocks.dart';
 void main() {
   const latitude = 200.0;
   const longitude = 400.0;
-  const model = ForecastModel();
+  const model = ForecastModel([]);
   const storageKey = 'forecast-$latitude-$longitude';
   group('#fetchForecast', () {
     test('when cache handler throws error then rethrows', () async {

@@ -1,5 +1,6 @@
 import 'package:concerts_weather/app/design_tokens.dart';
 import 'package:concerts_weather/generated/l10n.dart';
+import 'package:concerts_weather/modules/current_weather/domain/repositories/weather_model.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_model.dart';
 import 'package:concerts_weather/modules/forecast/presentation/forecast_events.dart';
 import 'package:flutter/material.dart';
@@ -79,11 +80,34 @@ class _LoadedState extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: DesignTokens.large),
+                Wrap(
+                  children: data.weathers.map((weather) => _ForecastDay(weather)).toList(),
+                ),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ForecastDay extends StatelessWidget {
+  const _ForecastDay(this.weather);
+  final WeatherModel weather;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(DesignTokens.small),
+      padding: const EdgeInsets.all(DesignTokens.regular),
+      color: Colors.orange,
+      child: Column(
+        children: [
+          Text(weather.main),
+          Text(weather.description),
+        ],
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@ void main() {
   group('#fetchForecast', () {
     test('when succeed then returns properly', () async {
       final repositoryMock = MockForecastRepository();
-      const forecast = ForecastModel();
+      const forecast = ForecastModel([]);
       when(repositoryMock.fetchForecast(latitude: latitude, longitude: longitude)).thenAnswer((_) async => forecast);
       final fetchForecast = makeSUT(repositoryMock);
 
