@@ -16,7 +16,7 @@ final class APIWeatherRepository implements WeatherRepository {
     final response = await _client.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body) as Map<String, dynamic>;
-      return WeatherModel.fromJson(json);
+      return WeatherModel.fromJson(json['weather'][0]);
     } else {
       throw CouldNotFetchWeatherError();
     }

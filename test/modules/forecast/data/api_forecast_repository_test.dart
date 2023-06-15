@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:concerts_weather/api_keys.dart';
+import 'package:concerts_weather/modules/current_weather/domain/repositories/weather_model.dart';
 import 'package:concerts_weather/modules/forecast/data/api_forecast_repository.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_model.dart';
 import 'package:concerts_weather/modules/forecast/domain/repositories/forecast_repositories.dart';
@@ -19,13 +20,23 @@ void main() {
   group('#fetchForecast', () {
     test('when the status is 200 then returns the data', () async {
       final clientMock = MockClient();
-      const model = ForecastModel([]);
-      when(clientMock.get(Uri.parse(url))).thenAnswer((_) async => Response(jsonEncode(model), 200));
+      final jsonResponse = {
+        'list': [
+          {
+            'weather': [
+              {
+                'description': 'Foo',
+                'main': 'Bar',
+              }
+            ]
+          },
+        ]
+      };
+      when(clientMock.get(Uri.parse(url))).thenAnswer((_) async => Response(jsonEncode(jsonResponse), 200));
       final sut = makeSUT(clientMock);
-
       expect(
         sut.fetchForecast(latitude: latitude, longitude: longitude),
-        completion(model),
+        completion(const ForecastModel([WeatherModel(description: 'Foo', main: 'Bar')])),
       );
     });
     test('when the status is not 200 then throws CouldNotFetchWeather', () async {

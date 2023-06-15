@@ -1,10 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class WeatherModel extends Equatable {
-  factory WeatherModel.fromJson(Map<String, dynamic> json) => WeatherModel(
-        description: json['weather'][0]['description'],
-        main: json['weather'][0]['main'],
-      );
+  factory WeatherModel.fromJson(Map<String, dynamic> json) {
+    return WeatherModel(
+      description: json['description'],
+      main: json['main'],
+    );
+  }
 
   const WeatherModel({
     required this.description,

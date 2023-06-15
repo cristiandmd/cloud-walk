@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:concerts_weather/modules/shared/mappers.dart';
 import 'connectivity_detector.dart';
 
 abstract class CacheHandler {
@@ -50,12 +50,3 @@ class SharedPreferencesCacheHandler implements CacheHandler {
 }
 
 final class CacheMissError extends Error {}
-
-extension Any<T> on T? {
-  U? map<U>(U Function(T) mapper) {
-    if (this != null) {
-      return mapper(this as T);
-    }
-    return null;
-  }
-}
