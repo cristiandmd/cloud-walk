@@ -38,7 +38,6 @@ class _ConcertsPageState extends State<ConcertsPage> {
           },
           decoration: InputDecoration(
             hintText: S.current.ConcertsSearchHint,
-            prefixIcon: const Icon(Icons.search),
             icon: const Icon(Icons.search),
             iconColor: Colors.white,
           ),
